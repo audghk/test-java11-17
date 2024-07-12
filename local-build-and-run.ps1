@@ -3,11 +3,13 @@ act push -v
 
 Write-Host "2. Checking and building Docker image..." -ForegroundColor Yellow
 $imageExists = docker images -q my-java-app
+
 if (-not $imageExists) {
     Write-Host "Docker image does not exist. Building a new one." -ForegroundColor Yellow
     docker build --no-cache -t my-java-app .
 } else {
     Write-Host "Using existing Docker image." -ForegroundColor Green
+    docker build --no-cache -t my-java-app .
 }
 
 if ($LASTEXITCODE -eq 0) {
